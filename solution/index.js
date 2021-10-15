@@ -1,41 +1,41 @@
 module.exports = function (Homework) {
-  const asyncArrayLength = (arr) => {
+  function asyncArrayLength(arr) {
     return new Promise((resolve) => {
       arr.length((result) => resolve(result))
     })
   }
 
-  const asyncArrayGet = (arr, index) => {
+  function asyncArrayGet(arr, index) {
     return new Promise((resolve) => {
       arr.get(index, (result) => resolve(result))
     })
   }
 
-  const asyncEqual = (a, b) => {
+  function asyncEqual(a, b) {
     return new Promise((resolve) => {
       Homework.equal(a, b, (result) => resolve(result))
     })
   }
 
-  const asyncLess = (a, b) => {
+  function asyncLess(a, b) {
     return new Promise((resolve) => {
       Homework.less(a, b, (result) => resolve(result))
     })
   }
 
-  const asyncAdd = (a, b) => {
+  function asyncAdd(a, b) {
     return new Promise((resolve) => {
       Homework.add(a, b, (result) => resolve(result))
     })
   }
 
-  const asyncFunction = (a, b, fn) => {
+  function asyncFunction(a, b, fn) {
     return new Promise((resolve) => {
       fn(a, b, (result) => resolve(result))
     })
   }
 
-  const reducer = async (asyncArray, fn, initialValue) => {
+  async function reducer(asyncArray, fn, initialValue) {
     const len = await asyncArrayLength(asyncArray)
     const empty = await asyncEqual(len, 0)
     if (empty) {
