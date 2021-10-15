@@ -1,6 +1,4 @@
 module.exports = function (Homework) {
-  const { add, less, equal } = Homework;
-
   const asyncArrayLength = (arr) => {
     return new Promise((resolve) => {
       arr.length((result) => resolve(result))
@@ -15,19 +13,19 @@ module.exports = function (Homework) {
 
   const asyncEqual = (a, b) => {
     return new Promise((resolve) => {
-      equal(a, b, (result) => resolve(result))
+      Homework.equal(a, b, (result) => resolve(result))
     })
   }
 
   const asyncLess = (a, b) => {
     return new Promise((resolve) => {
-      less(a, b, (result) => resolve(result))
+      Homework.less(a, b, (result) => resolve(result))
     })
   }
 
   const asyncAdd = (a, b) => {
     return new Promise((resolve) => {
-      add(a, b, (result) => resolve(result))
+      Homework.add(a, b, (result) => resolve(result))
     })
   }
 
