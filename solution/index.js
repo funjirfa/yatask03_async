@@ -1,4 +1,4 @@
-module.exports = async function (Homework) {
+module.exports = function (Homework) {
   function asyncArrayLength(arr) {
     return new Promise((resolve) => {
       arr.length((result) => resolve(result))
@@ -34,21 +34,27 @@ module.exports = async function (Homework) {
       fn(a, b, (result) => resolve(result))
     })
   }
-
+  
   return (array, fn, initialValue, cb) => {
-    const len = await asyncArrayLength(array)
+    (async () => {
+      const len = await asyncArrayLength(array)
+      const empty = await asyncEqual(len, 0)
+      if (empty) {
+        return initialValue
+      }
 
-    let result = initialValue
-    let index = 0
-    let condition = await asyncLess(index, len)
-    while (condition) {
-      const value = await asyncArrayGet(array, index)
-      result = await asyncFunction(result, value, fn)
+      let result = initialValue
+      let index = 0
+      let condition = await asyncLess(index, len)
+      while (condition) {
+        const value = await asyncArrayGet(array, index)
+        result = await asyncFunction(result, value, fn)
 
-      index = await asyncAdd(index, 1)
-      condition = await asyncLess(index, len)
-    }
+        index = await asyncAdd(index, 1)
+        condition = await asyncLess(index, len)
+      }
 
-    cb(result)
+      return result
+    })().then((result) => {cb(result)})
   }
 }
