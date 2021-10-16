@@ -41,6 +41,7 @@ module.exports = function (Homework) {
     let index = 0
     let condition = await asyncLess(index, len)
     while (condition) {
+      const value = await asyncArrayGet(array, index)
       index = await asyncAdd(index, 1)
       condition = await asyncLess(index, len)
     }
