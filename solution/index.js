@@ -29,9 +29,9 @@ module.exports = function (Homework) {
     })
   }
 
-  function asyncFunction(acc, cur, i, src, cb, fn) {
+  function asyncFunction(acc, cur, i, src, fn) {
     return new Promise(function(resolve) {
-      fn(a, b, i, src, function(result) { resolve(result) })
+      fn(acc, cur, i, src, function(result) { resolve(result) })
     })
   }
   
